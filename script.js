@@ -126,6 +126,55 @@
 // console.log(myAccount.withdraw(500));
 
 
+// Задача:
+// Создай функцию createTodoList(), которая возвращает объект с методами для управления списком задач (todo list). Этот объект должен поддерживать следующие методы:
+
+// addTask(task): добавляет задачу в список.
+// removeTask(index): удаляет задачу по её индексу.
+// getTasks(): возвращает текущий список задач.
+// clearTasks(): очищает список задач.
+
+
+function createTodoList() {
+    let todoList = []
+
+    function add(task) {
+        return todoList.push(task);
+    }
+
+    function remove(index) {
+        return todoList.splice(index, 1)
+    }
+
+    return {
+        addTask: function (task) {
+            return add(task)
+        },
+        removeTask: function (index) {
+            return remove(index)
+        },
+        getTasks: function () {
+            return todoList
+        },
+        clearTasks: function () {
+            return todoList.length = 0
+        }
+    }
+}
+
+
+const todoList = createTodoList();
+
+todoList.addTask("Learn JavaScript");
+todoList.addTask("Practice closures");
+
+console.log(todoList.getTasks()); // ["Learn JavaScript", "Practice closures"]
+
+todoList.removeTask(0);
+console.log(todoList.getTasks()); // ["Practice closures"]
+
+todoList.clearTasks();
+console.log(todoList.getTasks()); // [] 
 
 
 
