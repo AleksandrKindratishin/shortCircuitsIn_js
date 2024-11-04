@@ -135,51 +135,105 @@
 // clearTasks(): очищает список задач.
 
 
-function createTodoList() {
-    let todoList = []
+// function createTodoList() {
+//     let todoList = []
 
-    function add(task) {
-        return todoList.push(task);
+//     function add(task) {
+//         return todoList.push(task);
+//     }
+
+//     function remove(index) {
+//         return todoList.splice(index, 1)
+//     }
+
+//     return {
+//         addTask: function (task) {
+//             return add(task)
+//         },
+//         removeTask: function (index) {
+//             return remove(index)
+//         },
+//         getTasks: function () {
+//             return todoList
+//         },
+//         clearTasks: function () {
+//             return todoList.length = 0
+//         }
+//     }
+// }
+
+
+// const todoList = createTodoList();
+
+// todoList.addTask("Learn JavaScript");
+// todoList.addTask("Practice closures");
+
+// console.log(todoList.getTasks()); // ["Learn JavaScript", "Practice closures"]
+
+// todoList.removeTask(0);
+// console.log(todoList.getTasks()); // ["Practice closures"]
+
+// todoList.clearTasks();
+// console.log(todoList.getTasks()); // [] 
+
+
+
+
+// Задача: Счётчик с лимитом
+// Создай функцию createLimitedCounter, которая принимает начальное значение счётчика и максимальный лимит. Возвращаемый объект должен иметь следующие методы:
+
+// increment(): Увеличивает значение счётчика на 1, но если счётчик достигает максимального лимита, он больше не увеличивается.
+// decrement(): Уменьшает значение счётчика на 1, но если счётчик равен 0, он не уменьшается.
+// getValue(): Возвращает текущее значение счётчика.
+// reset(): Сбрасывает значение счётчика до начального.
+
+
+function createLimitedCounter(startValue, limit) {
+    let currentValue = startValue;
+
+    function increment() {
+        if (currentValue < limit) {
+            return currentValue += 1;
+        }
     }
 
-    function remove(index) {
-        return todoList.splice(index, 1)
+    function decrement() {
+        if (currentValue > 0) {
+            return currentValue -= 1;
+        }
+    }
+
+    function reset() {
+        currentValue = startValue;
     }
 
     return {
-        addTask: function (task) {
-            return add(task)
+        increment,
+        decrement,
+        getValue: function() {
+            return currentValue
         },
-        removeTask: function (index) {
-            return remove(index)
-        },
-        getTasks: function () {
-            return todoList
-        },
-        clearTasks: function () {
-            return todoList.length = 0
-        }
+        reset
     }
 }
 
+const counter = createLimitedCounter(1, 3)
 
-const todoList = createTodoList();
+console.log(counter.getValue());
 
-todoList.addTask("Learn JavaScript");
-todoList.addTask("Practice closures");
-
-console.log(todoList.getTasks()); // ["Learn JavaScript", "Practice closures"]
-
-todoList.removeTask(0);
-console.log(todoList.getTasks()); // ["Practice closures"]
-
-todoList.clearTasks();
-console.log(todoList.getTasks()); // [] 
+console.log(counter.increment());
+console.log(counter.increment());
+console.log(counter.increment());
+console.log(counter.increment());
 
 
+console.log(counter.decrement());
+console.log(counter.decrement());
+console.log(counter.decrement());
+console.log(counter.decrement());
 
+console.log(counter.getValue());
 
+counter.reset()
 
-
-
-
+console.log(counter.getValue());
